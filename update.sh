@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change the password to the pre-set one
-echo "$USER:donttrustanything" | sudo chpasswd
+echo "$USER:TEST" | sudo chpasswd
 echo "Password has been updated."
 
 # Log the user out
