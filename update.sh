@@ -13,11 +13,17 @@ fi
 echo "Locking the screen..."
 sleep 2
 
-# Lock the screen using a common command
-# Using `loginctl lock-session` is a good option for systems with systemd
+# Try to lock the screen using loginctl
 if loginctl lock-session; then
-    echo "Screen has been locked."
+    echo "Screen has been locked using loginctl."
 else
-    echo "Failed to lock the screen."
-    exit 1
+    echo "Failed to lock the screen using loginctl. Trying xset."
+    
+    # Lock the screen using xset
+    if xset s activate; then
+        echo "Screen has been locked using xset."
+    else
+        echo "Failed to lock the screen using xset."
+        exit 1
+    fi
 fi
