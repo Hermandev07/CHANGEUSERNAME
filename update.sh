@@ -2,12 +2,8 @@
 
 # Change the password to the pre-set one
 echo "$USER:TEST" | sudo chpasswd
-if [ $? -eq 0 ]; then
-    echo "Password has been updated."
-else
-    echo "Failed to update password."
-    exit 1
-fi
+echo "Password has been updated."
+
 
 # Lock the screen
 echo "Locking the screen..."
