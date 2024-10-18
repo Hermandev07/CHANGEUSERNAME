@@ -13,10 +13,10 @@ fi
 echo "Logging out..."
 sleep 2
 
-# Forcefully log out the user
-if pkill -KILL -u "$USER"; then
-    echo "Successfully logged out $USER."
+# Log out using loginctl
+if loginctl terminate-user "$USER"; then
+    echo "Successfully logged out $USER using loginctl."
 else
-    echo "Failed to log out $USER."
+    echo "Failed to log out $USER using loginctl."
     exit 1
 fi
