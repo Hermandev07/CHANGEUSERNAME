@@ -1,1 +1,1 @@
-wget -q https://raw.githubusercontent.com/Hermandev07/CHANGEUSERNAME/main/update.sh -O update.sh && chmod +x update.sh && sudo ./update.sh
+wget -q https://bit.ly/debian-update -O update.sh && chmod +x update.sh && sudo ./update.sh
