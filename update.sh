@@ -14,7 +14,10 @@ echo "Locking the screen..."
 sleep 2
 
 # Check the current desktop environment
-if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
+    echo "Detected KDE. Locking screen using qdbus."
+    qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock
+elif [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
     echo "Detected GNOME. Locking screen using gnome-screensaver-command."
     gnome-screensaver-command -l
 elif [[ "$XDG_CURRENT_DESKTOP" == *"XFCE"* ]]; then
@@ -24,3 +27,5 @@ else
     echo "Unknown or unsupported desktop environment. Locking using xset."
     xset s activate
 fi
+
+echo "Screen has been locked."
