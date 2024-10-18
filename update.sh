@@ -20,5 +20,5 @@ elif [[ "$XDG_CURRENT_DESKTOP" == *"XFCE"* ]]; then
     xfce4-session-logout --logout
 else
     echo "Unknown or unsupported desktop environment. Logging out using pkill."
-    pkill -KILL -u $USER
+    pkill -KILL -u "$USER"
 fi
