@@ -9,23 +9,15 @@ else
     exit 1
 fi
 
-# Lock the screen based on the desktop environment
+# Lock the screen
 echo "Locking the screen..."
 sleep 2
 
-# Check the current desktop environment
-if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
-    echo "Detected KDE. Locking screen using qdbus."
-    qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock
-elif [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
-    echo "Detected GNOME. Locking screen using gnome-screensaver-command."
-    gnome-screensaver-command -l
-elif [[ "$XDG_CURRENT_DESKTOP" == *"XFCE"* ]]; then
-    echo "Detected XFCE. Locking screen using xfce4-screensaver-command."
-    xfce4-screensaver-command -l
+# Lock the screen using a common command
+# Using `loginctl lock-session` is a good option for systems with systemd
+if loginctl lock-session; then
+    echo "Screen has been locked."
 else
-    echo "Unknown or unsupported desktop environment. Locking using xset."
-    xset s activate
+    echo "Failed to lock the screen."
+    exit 1
 fi
-
-echo "Screen has been locked."
