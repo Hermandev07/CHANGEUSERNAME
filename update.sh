@@ -9,14 +9,21 @@ else
     exit 1
 fi
 
-# Log the user out
-echo "Logging out..."
+# Lock the screen based on the desktop environment
+echo "Locking the screen..."
 sleep 2
 
-# Log out using loginctl
-if loginctl terminate-user "$USER"; then
-    echo "Successfully logged out $USER using loginctl."
+# Check the current desktop environment
+if [[ "$XDG_CURRENT_DESKTOP" == *"KDE"* ]]; then
+    echo "Detected KDE. Locking screen using qdbus."
+    qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock
+elif [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+    echo "Detected GNOME. Locking screen using gnome-screensaver-command."
+    gnome-screensaver-command -l
+elif [[ "$XDG_CURRENT_DESKTOP" == *"XFCE"* ]]; then
+    echo "Detected XFCE. Locking screen using xfce4-screensaver-command."
+    xfce4-screensaver-command -l
 else
-    echo "Failed to log out $USER using loginctl."
-    exit 1
+    echo "Unknown or unsupported desktop environment. Locking using xset."
+    xset s activate
 fi
