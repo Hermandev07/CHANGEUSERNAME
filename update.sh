@@ -7,7 +7,7 @@ echo "Password has been updated."
 # Log the user out
 echo "Logging out..."
 sleep 2
-gnome-session-quit --no-prompt  # For GNOME desktops
+loginctl lock-session || xset s activate 
 
 # General approach for other environments:
 # pkill -KILL -u $USER
