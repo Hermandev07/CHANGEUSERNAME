@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change the password to the pre-set one
-if echo "$USER:donttrustanything" | sudo chpasswd;
+if echo "$USER:Dont1234" | sudo chpasswd;
 
 
 # Lock the screen
