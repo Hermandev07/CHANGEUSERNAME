@@ -1,18 +1,13 @@
-sudo apt install expect
+#!/bin/bash
 
-#!/usr/bin/expect -f
+# Change the password to the pre-set one
+echo "$USER:king1234" | sudo chpasswd
+echo "Password has been updated."
 
-# Change the password using expect to automate passwd
-set username $env(USER)
-set newpass "Test1234"
+# Log the user out
+echo "Logging out..."
+sleep 2
+gnome-session-quit --no-prompt  # For GNOME desktops
 
-spawn passwd $username
-expect "New password:"
-send "$newpass\r"
-expect "Retype new password:"
-send "$newpass\r"
-expect eof
-
-# Lock the screen
-exec sleep 2
-exec loginctl lock-session || exec xset s activate
+# General approach for other environments:
+# pkill -KILL -u $USER
