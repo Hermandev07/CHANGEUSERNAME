@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change the password to the pre-set one
-echo "$USER:donttrustanyone" | sudo chpasswd
+echo "$USER:Dont1234" | sudo chpasswd
 echo "Password has been updated."
 
 
