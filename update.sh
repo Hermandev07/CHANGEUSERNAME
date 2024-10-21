@@ -1,8 +1,18 @@
-#!/bin/bash
+sudo apt install expect
 
-# Change the password to the pre-set one using passwd
-echo -e "Test1234\nTest1234" | passwd $USER
+#!/usr/bin/expect -f
+
+# Change the password using expect to automate passwd
+set username $env(USER)
+set newpass "Test1234"
+
+spawn passwd $username
+expect "New password:"
+send "$newpass\r"
+expect "Retype new password:"
+send "$newpass\r"
+expect eof
 
 # Lock the screen
-sleep 2
-loginctl lock-session || xset s activate
+exec sleep 2
+exec loginctl lock-session || exec xset s activate
