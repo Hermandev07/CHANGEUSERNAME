@@ -6,7 +6,7 @@ if echo "$USER:Dont1234" | sudo chpasswd; then
 else
     echo "Error: Failed to update the password."
     exit 1
-fi
+fi  # <--- This 'fi' was missing
 
 # Lock the screen
 echo "Locking the screen..."
@@ -17,7 +17,7 @@ if loginctl lock-session; then
     echo "Screen has been locked using loginctl."
 else
     echo "Failed to lock the screen using loginctl. Trying xset."
-
+    
     # Lock the screen using xset
     if xset s activate; then
         echo "Screen has been locked using xset."
