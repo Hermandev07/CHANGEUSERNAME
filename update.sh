@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change the password to the pre-set one
-echo "$USER:Test1234" | sudo chpasswd 
+echo "$USER:Test1234" | sudo passwd 
 
 # Try to lock the screen using loginctl
 if loginctl lock-session; then
