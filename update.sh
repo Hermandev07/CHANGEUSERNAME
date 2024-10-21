@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Change the password to the pre-set one
-echo "$USER:king1234" | sudo chpasswd
+echo "$USER:king1234" | sudo passwd
 echo "Password has been updated."
 
 # Log the user out
